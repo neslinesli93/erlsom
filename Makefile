@@ -14,25 +14,25 @@ APPS=kernel stdlib
 all: compile
 
 compile:
-	@./rebar compile
+	rebar3 compile
 
 doc:
-	@./rebar doc
+	rebar3 doc
 
 clean:
-	@./rebar clean
+	rebar3 clean
 
 build-plt: compile
-	@./rebar build-plt
+	rebar3 build-plt
 
 check-plt: compile
-	@./rebar check-plt
+	rebar3 check-plt
 
 dialyze:
-	@./rebar dialyze
+	rebar3 dialyze
 
 eunit:
-	@./rebar eunit
+	rebar3 eunit
 
 shell: compile
 	$(ERL) -sname $(APPLICATION) $(EPATH)

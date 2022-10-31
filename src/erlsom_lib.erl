@@ -1216,7 +1216,9 @@ printPf(Prefix) ->
 %% erlsom_ucs:from_utf8/1 is even worse with 280% time overhead and memory consumption of 2 words per character (16x binary size on 64-bit).
 xmlString(String) when is_list(String) ->
   lists:map(fun(Char) -> escapeChar(Char) end, String);
+  % String;
 xmlString(String) when is_binary(String) ->
+  % String.
   % check plus escape is 3% slower but check and skipping escape is 35x faster
   % binary:match/2 is 10x faster than a naive recursive check
   case binary:match(String, [<<$&>>, <<$">>, <<$<>>]) of

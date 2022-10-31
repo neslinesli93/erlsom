@@ -41,15 +41,12 @@ write(Struct, Model) ->
   write(Struct, Model, []).
 
 write(Struct, Model = #model{tps = Types}, Options) ->
-
   %% start with _document type.
   case lists:keysearch('_document', 2, Types) of
     {value, #type{els = [Head | _Tail], mxd = Mixed}} ->
       CurrentValue = Struct,
-      ResultWithThisElement =
-        processElementValues([CurrentValue], Head,
-                             [], 0, Model, {[], 0}, Mixed),
-      %% debug(ResultWithThisElement);
+      ResultWithThisElement = processElementValues([CurrentValue], Head, [], 0, Model, {[], 0}, Mixed),
+      % debug(ResultWithThisElement);
       case proplists:get_value(output, Options, list) of
         list ->
           {ok, unicode:characters_to_list(ResultWithThisElement)};
